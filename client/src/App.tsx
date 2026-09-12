@@ -26,7 +26,7 @@ const ProtectedRoute: React.FC<{ children: React.ReactNode }> = ({ children }) =
 
 export const App: React.FC = () => {
   return (
-    <div className="min-h-screen flex flex-col bg-slate-950 text-slate-100">
+    <div className="min-h-screen flex flex-col bg-white text-black">
       <Navbar />
       <main className="flex-1">
         <Routes>
@@ -50,6 +50,9 @@ export const App: React.FC = () => {
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </main>
+      <footer className="w-full p-4 border-t-2 border-black bg-white text-center font-bold text-black uppercase text-xs">
+        developed by sonali singh
+      </footer>
     </div>
   );
 };

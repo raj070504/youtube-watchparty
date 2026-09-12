@@ -59,10 +59,10 @@ export const CustomControls: React.FC<CustomControlsProps> = ({
   };
 
   return (
-    <div className="bg-slate-900/90 backdrop-blur-md rounded-2xl p-4 border border-slate-800 shadow-xl flex flex-col gap-3">
+    <div className="bg-white p-4 border-4 border-black flex flex-col gap-3">
       {/* Progress & Time */}
       <div className="flex items-center gap-3 w-full">
-        <span className="text-xs font-mono text-slate-400 min-w-[40px] text-right">
+        <span className="text-xs font-mono font-bold text-black min-w-[40px] text-right">
           {formatTime(currentTime)}
         </span>
         <div className="flex-1 relative group flex items-center">
@@ -74,12 +74,12 @@ export const CustomControls: React.FC<CustomControlsProps> = ({
             value={currentTime}
             onChange={handleSeekChange}
             disabled={!canControl}
-            className={`w-full h-2 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-rose-500 transition-all ${
-              !canControl ? 'opacity-60 cursor-not-allowed' : 'hover:h-2.5'
+            className={`w-full h-2 bg-black appearance-none cursor-pointer accent-black transition-all ${
+              !canControl ? 'opacity-60 cursor-not-allowed' : 'hover:h-3'
             }`}
           />
         </div>
-        <span className="text-xs font-mono text-slate-500 min-w-[40px]">
+        <span className="text-xs font-mono font-bold text-black min-w-[40px]">
           {duration > 0 ? formatTime(duration) : '--:--'}
         </span>
       </div>
@@ -92,24 +92,24 @@ export const CustomControls: React.FC<CustomControlsProps> = ({
             playState === PlayState.PLAYING ? (
               <button
                 onClick={onPause}
-                className="flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-semibold text-xs border border-slate-700 transition-all hover:scale-105 active:scale-95 shadow-md"
+                className="flex items-center gap-2 px-4 py-2 border-2 border-black bg-white hover:bg-black hover:text-white text-black font-bold uppercase text-xs transition-colors"
               >
-                <Pause className="w-4 h-4 fill-white text-white" />
+                <Pause className="w-4 h-4 fill-current" />
                 <span>Pause</span>
               </button>
             ) : (
               <button
                 onClick={onPlay}
-                className="flex items-center gap-2 px-4 py-2 rounded-xl bg-rose-600 hover:bg-rose-500 text-white font-semibold text-xs transition-all hover:scale-105 active:scale-95 shadow-lg shadow-rose-600/30"
+                className="flex items-center gap-2 px-4 py-2 border-2 border-black bg-black hover:bg-white hover:text-black text-white font-bold uppercase text-xs transition-colors"
               >
-                <Play className="w-4 h-4 fill-white text-white" />
+                <Play className="w-4 h-4 fill-current" />
                 <span>Play</span>
               </button>
             )
           ) : (
-            <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-800/80 border border-slate-700/60 text-xs text-slate-400">
-              <ShieldAlert className="w-3.5 h-3.5 text-amber-400" />
-              <span>Viewer Mode (Host/Moderator controls playback)</span>
+            <div className="flex items-center gap-1.5 px-3 py-1.5 border-2 border-black bg-white text-xs font-bold uppercase text-black">
+              <ShieldAlert className="w-3.5 h-3.5 text-black" />
+              <span>Viewer Mode</span>
             </div>
           )}
 
@@ -117,10 +117,10 @@ export const CustomControls: React.FC<CustomControlsProps> = ({
           <button
             onClick={onResync}
             title="Force sync player with server"
-            className="flex items-center gap-1.5 px-3 py-2 rounded-xl bg-slate-800/80 hover:bg-slate-700 text-slate-300 text-xs border border-slate-700/60 transition-all hover:text-white"
+            className="flex items-center gap-1.5 px-3 py-2 border-2 border-black bg-white hover:bg-black hover:text-white text-black font-bold uppercase text-xs transition-colors"
           >
-            <RefreshCw className="w-3.5 h-3.5 text-sky-400" />
-            <span className="hidden sm:inline">Sync Time</span>
+            <RefreshCw className="w-3.5 h-3.5" />
+            <span className="hidden sm:inline">Sync</span>
           </button>
         </div>
 
@@ -128,9 +128,9 @@ export const CustomControls: React.FC<CustomControlsProps> = ({
         {canControl && (
           <button
             onClick={() => setShowVideoModal(true)}
-            className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-medium border border-slate-700/80 transition-all hover:border-slate-600"
+            className="flex items-center gap-1.5 px-3.5 py-2 border-2 border-black bg-white hover:bg-gray-100 text-black text-xs font-bold uppercase transition-colors"
           >
-            <LinkIcon className="w-3.5 h-3.5 text-rose-400" />
+            <LinkIcon className="w-3.5 h-3.5" />
             <span>Change Video</span>
           </button>
         )}
@@ -138,24 +138,20 @@ export const CustomControls: React.FC<CustomControlsProps> = ({
 
       {/* Change Video Modal */}
       {showVideoModal && (
-        <div className="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm flex items-center justify-center p-4">
-          <div className="bg-slate-900 border border-slate-800 rounded-2xl max-w-md w-full p-6 shadow-2xl space-y-4">
+        <div className="fixed inset-0 z-50 bg-white/80 flex items-center justify-center p-4">
+          <div className="bg-white border-4 border-black max-w-md w-full p-6 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] space-y-4">
             <div className="flex items-center justify-between">
-              <h3 className="text-base font-bold text-white flex items-center gap-2">
-                <LinkIcon className="w-4 h-4 text-rose-500" />
+              <h3 className="text-base font-bold text-black uppercase flex items-center gap-2">
+                <LinkIcon className="w-4 h-4" />
                 Change Room Video
               </h3>
               <button
                 onClick={() => setShowVideoModal(false)}
-                className="text-slate-400 hover:text-white text-sm"
+                className="text-black hover:bg-gray-100 font-bold border-2 border-black w-8 h-8 flex items-center justify-center"
               >
                 ✕
               </button>
             </div>
-
-            <p className="text-xs text-slate-400 leading-relaxed">
-              Paste any YouTube URL or 11-character Video ID. All participants will instantly switch to this video in sync.
-            </p>
 
             <form onSubmit={handleVideoSubmit} className="space-y-3">
               <div>
@@ -168,22 +164,22 @@ export const CustomControls: React.FC<CustomControlsProps> = ({
                     setInputError('');
                   }}
                   autoFocus
-                  className="w-full px-3.5 py-2.5 rounded-xl bg-slate-950 border border-slate-700 text-sm text-white placeholder:text-slate-500 focus:outline-none focus:border-rose-500 transition-colors"
+                  className="w-full px-3.5 py-3 bg-white border-2 border-black text-sm text-black placeholder:text-gray-500 font-bold focus:outline-none focus:bg-gray-100 transition-colors"
                 />
-                {inputError && <p className="text-xs text-rose-400 mt-1.5">{inputError}</p>}
+                {inputError && <p className="text-xs font-bold text-black mt-1.5">{inputError}</p>}
               </div>
 
               <div className="flex justify-end gap-2 pt-2">
                 <button
                   type="button"
                   onClick={() => setShowVideoModal(false)}
-                  className="px-4 py-2 rounded-xl bg-slate-800 text-slate-300 hover:bg-slate-700 text-xs font-medium transition-colors"
+                  className="px-4 py-2 border-2 border-black bg-white hover:bg-gray-100 text-black text-xs font-bold uppercase transition-colors"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
-                  className="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-rose-600 hover:bg-rose-500 text-white text-xs font-semibold shadow-lg shadow-rose-600/30 transition-colors"
+                  className="flex items-center gap-1.5 px-4 py-2 border-2 border-black bg-black hover:bg-white hover:text-black text-white text-xs font-bold uppercase transition-colors"
                 >
                   <Check className="w-3.5 h-3.5" />
                   Load Video

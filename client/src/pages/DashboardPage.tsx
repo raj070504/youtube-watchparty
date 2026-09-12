@@ -74,17 +74,13 @@ export const DashboardPage: React.FC = () => {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-10">
       {/* Welcome Banner */}
-      <div className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-rose-950/60 via-slate-900 to-slate-900 border border-slate-800 p-8 shadow-2xl">
-        <div className="relative z-10 max-w-2xl space-y-2">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-rose-500/10 border border-rose-500/20 text-rose-300 text-xs font-semibold">
-            <Sparkles className="w-3.5 h-3.5" />
-            <span>Ready to Watch</span>
-          </div>
-          <h1 className="text-2xl sm:text-3xl font-extrabold text-white">
-            Welcome back, {user?.username}! 👋
+      <div className="border-4 border-black p-8 bg-white shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]">
+        <div className="max-w-2xl space-y-2">
+          <h1 className="text-3xl font-extrabold text-black uppercase">
+            Welcome, {user?.username}!
           </h1>
-          <p className="text-sm text-slate-400">
-            Host a new watch party or enter a room code to join your friends in synchronized playback.
+          <p className="text-sm text-black font-bold">
+            Host a new watch party or enter a room code to join.
           </p>
         </div>
       </div>
@@ -92,55 +88,54 @@ export const DashboardPage: React.FC = () => {
       {/* Action Cards: Create & Join */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         {/* Create Room Card */}
-        <div className="bg-slate-900/90 backdrop-blur-md rounded-3xl border border-slate-800 p-7 shadow-xl space-y-5">
+        <div className="bg-white border-4 border-black p-7 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] space-y-5">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-2xl bg-rose-500/20 border border-rose-500/30 flex items-center justify-center text-rose-400">
+            <div className="w-10 h-10 border-2 border-black flex items-center justify-center text-black bg-white">
               <PlusCircle className="w-5 h-5" />
             </div>
             <div>
-              <h2 className="text-lg font-bold text-white">Create a Watch Party</h2>
-              <p className="text-xs text-slate-400">Become the Host with full playback controls</p>
+              <h2 className="text-lg font-bold text-black uppercase">Create Room</h2>
             </div>
           </div>
 
           <form onSubmit={handleCreateRoom} className="space-y-4">
             <div>
-              <label className="block text-xs font-semibold text-slate-300 mb-1.5">
+              <label className="block text-xs font-bold uppercase text-black mb-1.5">
                 Room Title (optional)
               </label>
               <input
                 type="text"
-                placeholder="e.g. Friday Movie Night, Lo-Fi Chill"
+                placeholder="e.g. Movie Night"
                 value={createTitle}
                 onChange={(e) => setCreateTitle(e.target.value)}
-                className="w-full px-4 py-2.5 rounded-xl bg-slate-950 border border-slate-800 text-sm text-white placeholder:text-slate-600 focus:outline-none focus:border-rose-500 transition-colors"
+                className="w-full px-4 py-3 bg-white border-2 border-black text-sm text-black placeholder:text-gray-500 font-bold focus:outline-none focus:bg-gray-100 transition-colors"
               />
             </div>
 
             <div>
-              <label className="block text-xs font-semibold text-slate-300 mb-1.5">
-                Starting YouTube Video URL (optional)
+              <label className="block text-xs font-bold uppercase text-black mb-1.5">
+                Starting Video URL (optional)
               </label>
               <input
                 type="text"
                 placeholder="https://www.youtube.com/watch?v=..."
                 value={createVideoUrl}
                 onChange={(e) => setCreateVideoUrl(e.target.value)}
-                className="w-full px-4 py-2.5 rounded-xl bg-slate-950 border border-slate-800 text-sm text-white placeholder:text-slate-600 focus:outline-none focus:border-rose-500 transition-colors"
+                className="w-full px-4 py-3 bg-white border-2 border-black text-sm text-black placeholder:text-gray-500 font-bold focus:outline-none focus:bg-gray-100 transition-colors"
               />
             </div>
 
             <button
               type="submit"
               disabled={creating}
-              className="w-full py-3 rounded-xl bg-rose-600 hover:bg-rose-500 disabled:opacity-50 text-white font-bold text-xs uppercase tracking-wider shadow-lg shadow-rose-600/30 transition-all flex items-center justify-center gap-2"
+              className="w-full py-4 mt-4 bg-black hover:bg-white hover:text-black border-2 border-black text-white font-bold text-sm uppercase transition-all flex items-center justify-center gap-2 disabled:opacity-50"
             >
               {creating ? (
-                <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                <div className="w-4 h-4 border-2 border-black border-t-white rounded-full animate-spin" />
               ) : (
                 <>
-                  <Play className="w-4 h-4 fill-white" />
-                  <span>Create Room</span>
+                  <Play className="w-4 h-4 fill-current" />
+                  <span>Create</span>
                 </>
               )}
             </button>
@@ -148,29 +143,28 @@ export const DashboardPage: React.FC = () => {
         </div>
 
         {/* Join Room Card */}
-        <div className="bg-slate-900/90 backdrop-blur-md rounded-3xl border border-slate-800 p-7 shadow-xl space-y-5">
+        <div className="bg-white border-4 border-black p-7 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] space-y-5">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-2xl bg-sky-500/20 border border-sky-500/30 flex items-center justify-center text-sky-400">
+            <div className="w-10 h-10 border-2 border-black flex items-center justify-center text-black bg-white">
               <LogIn className="w-5 h-5" />
             </div>
             <div>
-              <h2 className="text-lg font-bold text-white">Join a Watch Party</h2>
-              <p className="text-xs text-slate-400">Enter a 6-letter room code or party link</p>
+              <h2 className="text-lg font-bold text-black uppercase">Join Room</h2>
             </div>
           </div>
 
           <form onSubmit={handleJoinRoom} className="space-y-4">
             <div>
-              <label className="block text-xs font-semibold text-slate-300 mb-1.5">
+              <label className="block text-xs font-bold uppercase text-black mb-1.5">
                 Room Code or Link
               </label>
               <input
                 type="text"
                 required
-                placeholder="e.g. PARTY1 or http://.../room/PARTY1"
+                placeholder="PARTY1"
                 value={joinInput}
                 onChange={(e) => setJoinInput(e.target.value)}
-                className="w-full px-4 py-2.5 rounded-xl bg-slate-950 border border-slate-800 text-sm text-white placeholder:text-slate-600 uppercase focus:outline-none focus:border-sky-500 transition-colors tracking-widest font-mono"
+                className="w-full px-4 py-3 bg-white border-2 border-black text-sm text-black placeholder:text-gray-500 font-bold uppercase focus:outline-none focus:bg-gray-100 transition-colors tracking-widest font-mono"
               />
             </div>
 
@@ -178,14 +172,14 @@ export const DashboardPage: React.FC = () => {
               <button
                 type="submit"
                 disabled={joining || !joinInput.trim()}
-                className="w-full py-3 rounded-xl bg-sky-600 hover:bg-sky-500 disabled:opacity-50 text-white font-bold text-xs uppercase tracking-wider shadow-lg shadow-sky-600/30 transition-all flex items-center justify-center gap-2"
+                className="w-full py-4 mt-4 bg-black hover:bg-white hover:text-black border-2 border-black text-white font-bold text-sm uppercase transition-all flex items-center justify-center gap-2 disabled:opacity-50"
               >
                 {joining ? (
-                  <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                  <div className="w-4 h-4 border-2 border-black border-t-white rounded-full animate-spin" />
                 ) : (
                   <>
                     <ArrowRight className="w-4 h-4" />
-                    <span>Enter Watch Party</span>
+                    <span>Join</span>
                   </>
                 )}
               </button>
@@ -195,25 +189,22 @@ export const DashboardPage: React.FC = () => {
       </div>
 
       {/* Your Recent Rooms List */}
-      <div className="space-y-4">
+      <div className="space-y-4 pt-4">
         <div className="flex items-center gap-2">
-          <Clock className="w-4 h-4 text-slate-400" />
-          <h2 className="text-sm font-bold uppercase tracking-wider text-slate-300">
-            Your Recent Watch Parties
+          <h2 className="text-sm font-bold uppercase tracking-wider text-black">
+            Recent Rooms
           </h2>
         </div>
 
         {loadingRooms ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {[1, 2, 3].map((n) => (
-              <div key={n} className="h-28 rounded-2xl bg-slate-900/60 animate-pulse border border-slate-800" />
+              <div key={n} className="h-28 bg-gray-200 border-2 border-black animate-pulse" />
             ))}
           </div>
         ) : myRooms.length === 0 ? (
-          <div className="p-8 rounded-2xl bg-slate-900/40 border border-slate-800/80 text-center text-slate-500">
-            <Video className="w-8 h-8 mx-auto mb-2 opacity-40" />
-            <p className="text-xs">No recent watch parties found.</p>
-            <p className="text-[11px] text-slate-600 mt-0.5">Create your first room above to get started!</p>
+          <div className="p-8 bg-white border-4 border-black border-dashed text-center text-black">
+            <p className="text-sm font-bold uppercase">No recent rooms</p>
           </div>
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -221,33 +212,33 @@ export const DashboardPage: React.FC = () => {
               <div
                 key={r.id}
                 onClick={() => navigate(`/room/${r.shortCode}`)}
-                className="group cursor-pointer p-4 rounded-2xl bg-slate-900/80 hover:bg-slate-800/80 border border-slate-800 hover:border-slate-700 transition-all shadow-lg flex flex-col justify-between space-y-3"
+                className="group cursor-pointer p-4 bg-white border-4 border-black hover:bg-gray-100 transition-all flex flex-col justify-between space-y-3 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]"
               >
                 <div className="flex items-start justify-between gap-2">
                   <div>
-                    <h3 className="text-sm font-bold text-white group-hover:text-rose-400 transition-colors line-clamp-1">
+                    <h3 className="text-sm font-bold text-black uppercase line-clamp-1">
                       {r.title}
                     </h3>
                     <div className="flex items-center gap-2 mt-1">
-                      <span className="text-xs font-mono font-semibold px-2 py-0.5 rounded bg-slate-950 text-slate-300 border border-slate-800">
+                      <span className="text-xs font-mono font-bold px-2 py-0.5 border border-black text-black">
                         {r.shortCode}
                       </span>
-                      <span className={`text-[10px] font-bold px-1.5 py-0.5 rounded ${
-                        r.role === Role.HOST ? 'bg-amber-500/20 text-amber-300' : 'bg-slate-800 text-slate-400'
+                      <span className={`text-[10px] font-bold px-1.5 py-0.5 uppercase border border-black ${
+                        r.role === Role.HOST ? 'bg-black text-white' : 'bg-white text-black'
                       }`}>
                         {r.role}
                       </span>
                     </div>
                   </div>
-                  <ArrowRight className="w-4 h-4 text-slate-500 group-hover:text-rose-400 group-hover:translate-x-0.5 transition-all" />
+                  <ArrowRight className="w-5 h-5 text-black group-hover:translate-x-1 transition-transform" />
                 </div>
 
-                <div className="flex items-center justify-between text-[11px] text-slate-500 pt-2 border-t border-slate-800/80">
+                <div className="flex items-center justify-between text-[11px] font-bold text-black pt-2 border-t-2 border-black">
                   <div className="flex items-center gap-1">
                     <Users className="w-3.5 h-3.5" />
-                    <span>{r.participantCount} members</span>
+                    <span>{r.participantCount} users</span>
                   </div>
-                  <span>Hosted by {r.creator}</span>
+                  <span>Host: {r.creator}</span>
                 </div>
               </div>
             ))}
