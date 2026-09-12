@@ -52,7 +52,7 @@ export const ReactionsOverlay: React.FC<ReactionsOverlayProps> = ({
             <span className="text-3xl sm:text-4xl filter drop-shadow-lg select-none">
               {particle.emoji}
             </span>
-            <span className="text-[10px] font-bold text-black bg-white border-2 border-black px-1.5 py-0.5 select-none uppercase mt-1">
+            <span className="text-[10px] font-bold text-white/90 bg-slate-900/60 px-2 py-0.5 rounded-full backdrop-blur-sm select-none mt-1">
               {particle.username}
             </span>
           </div>
@@ -60,13 +60,13 @@ export const ReactionsOverlay: React.FC<ReactionsOverlayProps> = ({
       </div>
 
       {/* Quick Reactions Bar */}
-      <div className="flex items-center justify-center gap-1.5 sm:gap-2 p-2 bg-white border-4 border-black">
-        <span className="text-xs font-bold text-black uppercase mr-1 hidden sm:inline">React:</span>
+      <div className="flex items-center justify-center gap-1.5 sm:gap-2 p-2 bg-slate-900/80 backdrop-blur-md rounded-2xl border border-slate-800 shadow-xl">
+        <span className="text-xs font-semibold text-slate-400 mr-1 hidden sm:inline">React:</span>
         {CONSTANTS.ALLOWED_EMOJIS.map((emoji) => (
           <button
             key={emoji}
             onClick={() => onSendReaction(emoji)}
-            className="text-xl sm:text-2xl p-1.5 hover:bg-gray-100 border-2 border-transparent hover:border-black hover:scale-125 active:scale-95 transition-all select-none"
+            className="text-xl sm:text-2xl p-1.5 rounded-xl hover:bg-slate-800 hover:scale-125 active:scale-95 transition-all select-none"
           >
             {emoji}
           </button>

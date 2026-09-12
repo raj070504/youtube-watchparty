@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Play, Sparkles, Users, Shield, Zap, MessageCircle } from 'lucide-react';
+import { Play, Sparkles } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import { useToast } from '../context/ToastContext';
 
@@ -44,29 +44,36 @@ export const LandingPage: React.FC = () => {
   };
 
   return (
-    <div className="min-h-[calc(100vh-4rem)] flex flex-col justify-center py-12 px-4 sm:px-6 lg:px-8 bg-white">
-      <div className="max-w-4xl mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+    <div className="min-h-[calc(100vh-4rem)] flex flex-col justify-center py-12 px-4 sm:px-6 lg:px-8 bg-slate-50">
+      <div className="max-w-5xl mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
         {/* Left Hero */}
-        <div className="space-y-6">
-          <h1 className="text-4xl sm:text-5xl font-extrabold text-black uppercase border-b-4 border-black pb-4">
-            Watch Videos<br />Together.
+        <div className="space-y-6 lg:pr-8">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-indigo-100 text-indigo-700 font-medium text-sm">
+            <Sparkles className="w-4 h-4" />
+            <span>The easiest way to watch together</span>
+          </div>
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-slate-900 leading-tight">
+            Watch Videos <br/>
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600">
+              Together.
+            </span>
           </h1>
-          <p className="text-lg text-black font-bold border-l-4 border-black pl-4">
-            Create rooms, share codes, and watch in sync.
+          <p className="text-lg text-slate-600 leading-relaxed max-w-lg">
+            Create rooms, share codes, and watch in sync with your friends. Perfect for movie nights and study groups.
           </p>
         </div>
 
         {/* Right Auth Card */}
-        <div className="bg-white border-4 border-black p-8 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]">
+        <div className="bg-white rounded-2xl p-8 shadow-xl shadow-slate-200/50 border border-slate-100">
             {/* Tabs */}
-            <div className="flex border-2 border-black mb-6">
+            <div className="flex bg-slate-100 p-1 rounded-xl mb-8">
               <button
                 type="button"
                 onClick={() => setIsLogin(true)}
-                className={`flex-1 py-3 text-xs font-bold uppercase border-r-2 border-black transition-all ${
+                className={`flex-1 py-2.5 text-sm font-semibold rounded-lg transition-all ${
                   isLogin
-                    ? 'bg-black text-white'
-                    : 'bg-white text-black hover:bg-gray-100'
+                    ? 'bg-white text-indigo-600 shadow-sm'
+                    : 'text-slate-500 hover:text-slate-700'
                 }`}
               >
                 Sign In
@@ -74,21 +81,21 @@ export const LandingPage: React.FC = () => {
               <button
                 type="button"
                 onClick={() => setIsLogin(false)}
-                className={`flex-1 py-3 text-xs font-bold uppercase transition-all ${
+                className={`flex-1 py-2.5 text-sm font-semibold rounded-lg transition-all ${
                   !isLogin
-                    ? 'bg-black text-white'
-                    : 'bg-white text-black hover:bg-gray-100'
+                    ? 'bg-white text-indigo-600 shadow-sm'
+                    : 'text-slate-500 hover:text-slate-700'
                 }`}
               >
                 Create Account
               </button>
             </div>
 
-            <form onSubmit={handleAuthSubmit} className="space-y-4">
+            <form onSubmit={handleAuthSubmit} className="space-y-5">
               {isLogin ? (
                 <>
                   <div>
-                    <label className="block text-xs font-bold uppercase text-black mb-1.5">
+                    <label className="block text-sm font-medium text-slate-700 mb-1.5">
                       Email or Username
                     </label>
                     <input
@@ -97,12 +104,12 @@ export const LandingPage: React.FC = () => {
                       placeholder="alex or alex@example.com"
                       value={identifier}
                       onChange={(e) => setIdentifier(e.target.value)}
-                      className="w-full px-4 py-3 bg-white border-2 border-black text-sm text-black placeholder:text-gray-500 font-bold focus:outline-none focus:bg-gray-100 transition-colors"
+                      className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-xs font-bold uppercase text-black mb-1.5">
+                    <label className="block text-sm font-medium text-slate-700 mb-1.5">
                       Password
                     </label>
                     <input
@@ -111,14 +118,14 @@ export const LandingPage: React.FC = () => {
                       placeholder="••••••••"
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
-                      className="w-full px-4 py-3 bg-white border-2 border-black text-sm text-black placeholder:text-gray-500 font-bold focus:outline-none focus:bg-gray-100 transition-colors"
+                      className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all"
                     />
                   </div>
                 </>
               ) : (
                 <>
                   <div>
-                    <label className="block text-xs font-bold uppercase text-black mb-1.5">
+                    <label className="block text-sm font-medium text-slate-700 mb-1.5">
                       Username
                     </label>
                     <input
@@ -127,12 +134,12 @@ export const LandingPage: React.FC = () => {
                       placeholder="alex99"
                       value={username}
                       onChange={(e) => setUsername(e.target.value)}
-                      className="w-full px-4 py-3 bg-white border-2 border-black text-sm text-black placeholder:text-gray-500 font-bold focus:outline-none focus:bg-gray-100 transition-colors"
+                      className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-xs font-bold uppercase text-black mb-1.5">
+                    <label className="block text-sm font-medium text-slate-700 mb-1.5">
                       Email Address
                     </label>
                     <input
@@ -141,12 +148,12 @@ export const LandingPage: React.FC = () => {
                       placeholder="alex@example.com"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
-                      className="w-full px-4 py-3 bg-white border-2 border-black text-sm text-black placeholder:text-gray-500 font-bold focus:outline-none focus:bg-gray-100 transition-colors"
+                      className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-xs font-bold uppercase text-black mb-1.5">
+                    <label className="block text-sm font-medium text-slate-700 mb-1.5">
                       Password (min 6 characters)
                     </label>
                     <input
@@ -155,7 +162,7 @@ export const LandingPage: React.FC = () => {
                       placeholder="••••••••"
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
-                      className="w-full px-4 py-3 bg-white border-2 border-black text-sm text-black placeholder:text-gray-500 font-bold focus:outline-none focus:bg-gray-100 transition-colors"
+                      className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all"
                     />
                   </div>
                 </>
@@ -164,14 +171,14 @@ export const LandingPage: React.FC = () => {
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full py-4 mt-4 bg-black hover:bg-white hover:text-black border-2 border-black text-white font-bold text-sm uppercase transition-all flex items-center justify-center gap-2 disabled:opacity-50"
+                className="w-full py-3.5 mt-2 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-semibold shadow-lg shadow-indigo-600/30 transition-all flex items-center justify-center gap-2 disabled:opacity-50"
               >
                 {loading ? (
-                  <div className="w-5 h-5 border-2 border-black border-t-white rounded-full animate-spin" />
+                  <div className="w-5 h-5 border-2 border-indigo-400 border-t-white rounded-full animate-spin" />
                 ) : (
                   <>
-                    <Play className="w-4 h-4 fill-current" />
-                    <span>{isLogin ? 'Sign In' : 'Join'}</span>
+                    <Play className="w-4 h-4 fill-white" />
+                    <span>{isLogin ? 'Sign In' : 'Create Free Account'}</span>
                   </>
                 )}
               </button>

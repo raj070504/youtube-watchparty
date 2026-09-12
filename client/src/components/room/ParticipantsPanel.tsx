@@ -27,23 +27,23 @@ export const ParticipantsPanel: React.FC<ParticipantsPanelProps> = ({
     switch (role) {
       case Role.HOST:
         return (
-          <span className="flex items-center gap-1 text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 border-2 border-black bg-black text-white">
+          <span className="flex items-center gap-1 text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-amber-100 text-amber-700 border border-amber-200">
             <Crown className="w-3 h-3 fill-current" />
             Host
           </span>
         );
       case Role.MODERATOR:
         return (
-          <span className="flex items-center gap-1 text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 border-2 border-black bg-white text-black">
-            <Shield className="w-3 h-3" />
+          <span className="flex items-center gap-1 text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-indigo-100 text-indigo-700 border border-indigo-200">
+            <Shield className="w-3 h-3 text-indigo-600" />
             Mod
           </span>
         );
       case Role.PARTICIPANT:
       default:
         return (
-          <span className="flex items-center gap-1 text-[10px] font-bold uppercase tracking-wider px-1.5 py-0.5 border border-black bg-white text-black">
-            <User className="w-3 h-3" />
+          <span className="flex items-center gap-1 text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-slate-100 text-slate-600 border border-slate-200">
+            <User className="w-3 h-3 text-slate-500" />
             Viewer
           </span>
         );
@@ -51,14 +51,14 @@ export const ParticipantsPanel: React.FC<ParticipantsPanelProps> = ({
   };
 
   return (
-    <div className="flex flex-col h-full bg-white border-4 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] overflow-hidden">
+    <div className="flex flex-col h-full bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
       {/* Header */}
-      <div className="p-3.5 border-b-2 border-black flex items-center justify-between">
+      <div className="p-4 border-b border-slate-100 flex items-center justify-between bg-slate-50">
         <div className="flex items-center gap-2">
-          <Crown className="w-4 h-4 text-black" />
-          <h3 className="font-bold text-xs uppercase tracking-wider text-black">Participants</h3>
+          <Crown className="w-4 h-4 text-indigo-600" />
+          <h3 className="font-bold text-sm text-slate-900">Participants</h3>
         </div>
-        <span className="text-[11px] font-mono text-black bg-white border border-black font-bold px-2 py-0.5">
+        <span className="text-[11px] font-medium text-slate-500 bg-slate-200/50 px-2 py-0.5 rounded-full">
           {participants.length} online
         </span>
       </div>
@@ -73,30 +73,30 @@ export const ParticipantsPanel: React.FC<ParticipantsPanelProps> = ({
           return (
             <div
               key={p.userId}
-              className={`flex items-center justify-between p-2.5 border-2 transition-all ${
+              className={`flex items-center justify-between p-3 rounded-xl border transition-all ${
                 isMe
-                  ? 'bg-black text-white border-black'
-                  : 'bg-white text-black border-black hover:bg-gray-100'
+                  ? 'bg-indigo-50 border-indigo-100 shadow-sm'
+                  : 'bg-white border-slate-100 hover:border-slate-200 hover:shadow-sm'
               }`}
             >
               {/* User info */}
-              <div className="flex items-center gap-2.5">
+              <div className="flex items-center gap-3">
                 <div className="relative">
-                  <div className={`w-8 h-8 border-2 border-black flex items-center justify-center font-bold text-xs ${isMe ? 'bg-black text-white' : 'bg-white text-black'}`}>
+                  <div className={`w-9 h-9 rounded-full flex items-center justify-center font-bold text-sm ${isMe ? 'bg-indigo-600 text-white' : 'bg-slate-100 text-slate-600'}`}>
                     {p.username.charAt(0).toUpperCase()}
                   </div>
                   <span
-                    className={`absolute bottom-0 right-0 w-2.5 h-2.5 ring-1 ring-black ${
-                      p.isOnline ? 'bg-black' : 'bg-white'
+                    className={`absolute bottom-0 right-0 w-3 h-3 rounded-full ring-2 ring-white ${
+                      p.isOnline ? 'bg-emerald-500' : 'bg-slate-300'
                     }`}
                   />
                 </div>
                 <div>
                   <div className="flex items-center gap-1.5">
-                    <span className="text-xs font-bold">{p.username}</span>
-                    {isMe && <span className="text-[10px] font-bold">(You)</span>}
+                    <span className="text-sm font-semibold text-slate-900">{p.username}</span>
+                    {isMe && <span className="text-[10px] font-bold text-indigo-600">(You)</span>}
                   </div>
-                  <div className="mt-0.5">{renderRoleBadge(p.role)}</div>
+                  <div className="mt-1">{renderRoleBadge(p.role)}</div>
                 </div>
               </div>
 
@@ -105,23 +105,23 @@ export const ParticipantsPanel: React.FC<ParticipantsPanelProps> = ({
                 <div className="relative">
                   <button
                     onClick={() => setActiveMenuUserId(activeMenuUserId === p.userId ? null : p.userId)}
-                    className="p-1.5 border border-black hover:bg-black hover:text-white transition-colors"
+                    className="p-1.5 rounded-lg text-slate-400 hover:bg-slate-100 hover:text-slate-700 transition-colors"
                   >
                     <MoreVertical className="w-4 h-4" />
                   </button>
 
                   {/* Dropdown Menu */}
                   {activeMenuUserId === p.userId && (
-                    <div className="absolute right-0 top-8 z-30 w-44 bg-white border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] p-1 space-y-1">
+                    <div className="absolute right-0 top-8 z-30 w-48 bg-white rounded-xl border border-slate-200 shadow-lg p-1 space-y-0.5">
                       {p.role === Role.PARTICIPANT ? (
                         <button
                           onClick={() => {
                             onAssignRole(p.userId, Role.MODERATOR);
                             setActiveMenuUserId(null);
                           }}
-                          className="w-full flex items-center gap-2 px-2.5 py-1.5 text-xs text-black font-bold hover:bg-gray-100 transition-colors text-left uppercase border border-transparent hover:border-black"
+                          className="w-full flex items-center gap-2 px-3 py-2 text-xs font-semibold text-slate-700 hover:bg-indigo-50 hover:text-indigo-700 rounded-lg transition-colors text-left"
                         >
-                          <ShieldCheck className="w-3.5 h-3.5" />
+                          <ShieldCheck className="w-4 h-4" />
                           Make Moderator
                         </button>
                       ) : (
@@ -130,9 +130,9 @@ export const ParticipantsPanel: React.FC<ParticipantsPanelProps> = ({
                             onAssignRole(p.userId, Role.PARTICIPANT);
                             setActiveMenuUserId(null);
                           }}
-                          className="w-full flex items-center gap-2 px-2.5 py-1.5 text-xs text-black font-bold hover:bg-gray-100 transition-colors text-left uppercase border border-transparent hover:border-black"
+                          className="w-full flex items-center gap-2 px-3 py-2 text-xs font-semibold text-slate-700 hover:bg-slate-100 rounded-lg transition-colors text-left"
                         >
-                          <User className="w-3.5 h-3.5" />
+                          <User className="w-4 h-4" />
                           Demote to Viewer
                         </button>
                       )}
@@ -144,13 +144,13 @@ export const ParticipantsPanel: React.FC<ParticipantsPanelProps> = ({
                             setActiveMenuUserId(null);
                           }
                         }}
-                        className="w-full flex items-center gap-2 px-2.5 py-1.5 text-xs text-black font-bold hover:bg-gray-100 transition-colors text-left uppercase border border-transparent hover:border-black"
+                        className="w-full flex items-center gap-2 px-3 py-2 text-xs font-semibold text-slate-700 hover:bg-amber-50 hover:text-amber-700 rounded-lg transition-colors text-left"
                       >
-                        <ArrowRightLeft className="w-3.5 h-3.5" />
+                        <ArrowRightLeft className="w-4 h-4" />
                         Transfer Host
                       </button>
 
-                      <div className="h-0.5 bg-black my-1" />
+                      <div className="h-px bg-slate-100 my-1 mx-2" />
 
                       <button
                         onClick={() => {
@@ -159,9 +159,9 @@ export const ParticipantsPanel: React.FC<ParticipantsPanelProps> = ({
                             setActiveMenuUserId(null);
                           }
                         }}
-                        className="w-full flex items-center gap-2 px-2.5 py-1.5 text-xs text-black font-bold hover:bg-gray-100 transition-colors text-left uppercase border border-transparent hover:border-black"
+                        className="w-full flex items-center gap-2 px-3 py-2 text-xs font-semibold text-rose-600 hover:bg-rose-50 rounded-lg transition-colors text-left"
                       >
-                        <UserX className="w-3.5 h-3.5" />
+                        <UserX className="w-4 h-4" />
                         Remove User
                       </button>
                     </div>
